@@ -5,15 +5,25 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from 'redux-persist';
 
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 
 let persistor = persistStore(store);
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Component {...pageProps} />
-      </PersistGate>
-    </Provider>
+    <>
+      <Head>
+        <title>Shop pay</title>
+        <meta name="description" content="Shop pay-online shopping service" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
+      </Provider>
+    </>
   )
 }
